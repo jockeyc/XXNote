@@ -6,7 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".NoteActivity">
 
+    <com.shu.xxnote.customView.NoScrollViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></com.shu.xxnote.customView.NoScrollViewPager>
+
     <RadioGroup
+        android:id="@+id/radioGroup_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -15,19 +25,19 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton7"
+            android:id="@+id/radioButton_image"
             style="@style/MainViewTabStyle"
             android:drawableTop="@drawable/selector_image"
             android:text="图片" />
 
         <RadioButton
-            android:id="@+id/radioButton10"
+            android:id="@+id/radioButton_recording"
             style="@style/MainViewTabStyle"
             android:drawableTop="@drawable/selector_recording"
             android:text="录音" />
 
         <RadioButton
-            android:id="@+id/radioButton11"
+            android:id="@+id/radioButton_video"
             style="@style/MainViewTabStyle"
             android:drawableTop="@drawable/selector_video"
             android:text="视频" />

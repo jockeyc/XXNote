@@ -15,7 +15,7 @@ public class FolderFragment extends BaseFragment {
 
     @Override
     protected View getSubView(LayoutInflater inflater, ViewGroup container) {
-        View rootView = inflater.inflate(R.layout.folder_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_folder,container,false);
         return rootView;
     }
 }

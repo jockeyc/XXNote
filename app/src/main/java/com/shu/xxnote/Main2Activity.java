@@ -1,11 +1,11 @@
 package com.shu.xxnote;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatRadioButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -63,7 +63,7 @@ public class Main2Activity extends AppCompatActivity implements RadioGroup.OnChe
         radioGroup = ((RadioGroup) findViewById(R.id.radioGroup));
         radioGroup.setOnCheckedChangeListener(this);
 
-        RadioButton Rdbtn = (RadioButton) findViewById(R.id.radioButton2);
+        RadioButton Rdbtn = (RadioButton) findViewById(R.id.radioButton);
         Rdbtn.setChecked(true);
     }
 
@@ -81,6 +81,11 @@ public class Main2Activity extends AppCompatActivity implements RadioGroup.OnChe
                 break;
             case R.id.radioButton2:
                 index = Constants.PAGE_FOLDER;
+                break;
+            case R.id.radioButton3:
+                Intent intent = new Intent(Main2Activity.this,NoteActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.radioButton4:
                 index = Constants.PAGE_COLLECTION;

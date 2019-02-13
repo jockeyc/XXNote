@@ -15,7 +15,7 @@ public class CollectionFragment extends BaseFragment {
 
     @Override
     protected View getSubView(LayoutInflater inflater, ViewGroup container) {
-        View rootView = inflater.inflate(R.layout.collection_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_collection,container,false);
         return rootView;
     }
 }

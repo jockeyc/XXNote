@@ -15,7 +15,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected View getSubView(LayoutInflater inflater, ViewGroup container) {
-        View rootView = inflater.inflate(R.layout.mine_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_mine,container,false);
         return rootView;
     }
 }
