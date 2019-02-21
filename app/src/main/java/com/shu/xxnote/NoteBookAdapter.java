@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.shu.xxnote.utils.notebook_main;
-
 import java.util.List;
 
 

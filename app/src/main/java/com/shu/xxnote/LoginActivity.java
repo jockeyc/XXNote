@@ -66,7 +66,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void done(List<Users> list, BmobException e) {
                         if(list.size() != 0){
                             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+                            Intent intent = new Intent(LoginActivity.this, notebook_main.class);
+                            intent.putExtra("userId",list.get(0).getObjectId());
                             startActivity(intent);
                             finish();
                         }else{
