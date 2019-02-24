@@ -1,5 +1,6 @@
 package com.shu.xxnote;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +12,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.shu.xxnote.module.serach;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,7 @@ import cn.bmob.v3.listener.SaveListener;
 public class notebook_main extends AppCompatActivity {
     GridView gridView;
     NoteBookAdapter adapter;
-    ImageButton add;
+    ImageButton add,search;
     private Context context;
     List<Notebook> list = new ArrayList<>();
     private EditText tv1;
@@ -55,9 +59,20 @@ public class notebook_main extends AppCompatActivity {
                 }
             }
         });
+
+        //初始化搜索界面
+        search = (ImageButton) findViewById(R.id.search);
         //初始化添加按钮
         add = (ImageButton) findViewById( R.id.add );
         add.setOnClickListener(new AddListener());
+        search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(notebook_main.this, serach.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     //添加一本笔记本
