@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(list.size() != 0){
                             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
                           //  Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
-                            Intent intent = new Intent(LoginActivity.this, notebook_main.class);
+                            Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
                             Bundle bundle = new Bundle();
 
                             intent.putExtra("userId",list.get(0).getObjectId());

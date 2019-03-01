@@ -18,38 +18,16 @@ public class Main2Activity extends AppCompatActivity implements RadioGroup.OnChe
     private Drawable[] drawables = new Drawable[5];
     private NoScrollViewPager mViewPager;
     private RadioGroup radioGroup;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
-        Rdbtn[0] = (RadioButton)findViewById(R.id.radioButton);
-        Rdbtn[1] = (RadioButton)findViewById(R.id.radioButton2);
-        Rdbtn[2] = (RadioButton)findViewById(R.id.radioButton3);
-        Rdbtn[3] = (RadioButton)findViewById(R.id.radioButton4);
-        Rdbtn[4] = (RadioButton)findViewById(R.id.radioButton5);
-        drawables[0]=getResources().getDrawable(R.drawable.selector_tab_button1,null); //获取图片
-        drawables[1]=getResources().getDrawable(R.drawable.selector_tab_button2,null);
-        drawables[2]=getResources().getDrawable(R.drawable.tab_button3,null);
-        drawables[3]=getResources().getDrawable(R.drawable.selector_tab_button4,null);
-        drawables[4]=getResources().getDrawable(R.drawable.selector_tab_button5,null);
-        drawables[0].setBounds(0, 0, 60, 60);  //设置图片参数
-        drawables[1].setBounds(0, 0, 60, 60);
-        drawables[2].setBounds(0, 0, 100, 100);
-        drawables[3].setBounds(0, 0, 60, 60);
-        drawables[4].setBounds(0, 0, 60, 60);
-
-        for(int i=0;i<5;i++){
-            Rdbtn[i].setCompoundDrawables(null,drawables[i],null,null);
-        }
-        //设置到哪个控件的位置（）
-
-
+        setImage();
         initView();
         initListener();
-        
+        userId = getIntent().getExtras().getString("userId");
     }
-
 
     private void initView() {
         FragmentManager supportFragmentManager = getSupportFragmentManager();
@@ -124,4 +102,32 @@ public class Main2Activity extends AppCompatActivity implements RadioGroup.OnChe
     public void onPageScrollStateChanged(int i) {
 
     }
+
+    private void setImage() {
+        Rdbtn[0] = (RadioButton)findViewById(R.id.radioButton);
+        Rdbtn[1] = (RadioButton)findViewById(R.id.radioButton2);
+        Rdbtn[2] = (RadioButton)findViewById(R.id.radioButton3);
+        Rdbtn[3] = (RadioButton)findViewById(R.id.radioButton4);
+        Rdbtn[4] = (RadioButton)findViewById(R.id.radioButton5);
+        drawables[0]=getResources().getDrawable(R.drawable.selector_tab_button1,null); //获取图片
+        drawables[1]=getResources().getDrawable(R.drawable.selector_tab_button2,null);
+        drawables[2]=getResources().getDrawable(R.drawable.tab_button3,null);
+        drawables[3]=getResources().getDrawable(R.drawable.selector_tab_button4,null);
+        drawables[4]=getResources().getDrawable(R.drawable.selector_tab_button5,null);
+        drawables[0].setBounds(0, 0, 60, 60);  //设置图片参数
+        drawables[1].setBounds(0, 0, 60, 60);
+        drawables[2].setBounds(0, 0, 100, 100);
+        drawables[3].setBounds(0, 0, 60, 60);
+        drawables[4].setBounds(0, 0, 60, 60);
+
+        for(int i=0;i<5;i++){
+            Rdbtn[i].setCompoundDrawables(null,drawables[i],null,null);
+        }
+        //设置到哪个控件的位置（）
+    }
+
+    public String getUserId(){
+        return userId;
+    }
+
 }
