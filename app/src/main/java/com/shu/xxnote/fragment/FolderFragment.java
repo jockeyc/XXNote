@@ -34,7 +34,7 @@ import cn.bmob.v3.listener.SaveListener;
 
 public class FolderFragment extends BaseFragment {
     GridView gridView;
-    NoteBookAdapter adapter;
+    public NoteBookAdapter adapter;
     ImageButton add;
     private Context context;
     List<Notebook> list = new ArrayList<>();
@@ -74,10 +74,6 @@ public class FolderFragment extends BaseFragment {
             }
         });
         TextView textView=rootView.findViewById(R.id.textView8);
-        textView.setText("123456");
-        add = (ImageButton) rootView.findViewById(R.id.imageButton3);
-        add.setOnClickListener(new FolderFragment.AddListener());
-
 
         //初始化添加按钮
 
@@ -102,81 +98,8 @@ public class FolderFragment extends BaseFragment {
         return rootView;
     }
 
-    class AddListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            final Dialog addDialog = new Dialog( getActivity(), R.style.HorizonDialog );
-            addDialog.setContentView( R.layout.add_notebook_ask );
-            Button btn_ok = (Button) addDialog.findViewById( R.id.ok );
-            Button btn_cancel = (Button) addDialog.findViewById( R.id.cancel );
-
-            btn_ok.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
-                    final Dialog setname = new Dialog(getActivity(), R.style.HorizonDialog);
-                    setname.setContentView(R.layout.setname);
-                    Button btn_ok = (Button)setname.findViewById(R.id.btn_ok);
-                    Button btn_cancel = (Button)setname.findViewById(R.id.btn_cancel);
-                    tv1=(EditText)setname.findViewById( R.id.textView );
-                    setname.show();
-                    btn_ok.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            String name = tv1.getText().toString();
-                            if(name.length()==0)
-                                name="我的笔记本";
-
-                            Notebook book = new Notebook();
-                            book.setNotename(name);
-                            book.setCover(Notebook.getRandomCover());
-                            Users users = new Users();
-                            users.setObjectId(userId);
-                            book.setUsers(users);
-                            book.save(new SaveListener<String>() {
-                                @Override
-                                public void done(String objectId,BmobException e) {
-                                    if(e==null){
-                                        Toast.makeText( getActivity(), "添加笔记成功", Toast.LENGTH_SHORT ).show();
-                                    }else{
-                                        Toast.makeText( getActivity(), "添加笔记失败", Toast.LENGTH_SHORT ).show();
-                                    }
-                                }
-                            });
-                            BmobQuery<Notebook> query = new BmobQuery<>();
-                            Users users1 = new Users();
-                            users1.setObjectId(userId);
-                            query.addWhereEqualTo("users",users1);
-                            query.findObjects(new FindListener<Notebook>() {
-                                @Override
-                                public void done(List<Notebook> list1, BmobException e) {
-                                    if(e==null){
-                                        //动态刷新
-                                        adapter.setList(list1);
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                }
-                            });
-                            setname.cancel();
-                        }
-                    });
-
-                    btn_cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View arg0) {
-                            setname.cancel();
-                        }
-                    });
-                    addDialog.cancel();
-                }
-            } );
-
-            btn_cancel.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View arg0) {
-                    addDialog.cancel();
-                }
-            } );
-            addDialog.show();
-        }
+    public NoteBookAdapter getAdapter() {
+        return adapter;
     }
+
 }
