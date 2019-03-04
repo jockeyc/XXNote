@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.shu.xxnote.Bmob.Notebook;
+import com.shu.xxnote.Bmob.Users;
 import com.shu.xxnote.adapter.MainContentPagerAdapter;
 import com.shu.xxnote.adapter.NoteBookAdapter;
 import com.shu.xxnote.customView.NoScrollViewPager;

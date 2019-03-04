@@ -1,4 +1,6 @@
-package com.shu.xxnote;
+package com.shu.xxnote.Bmob;
+
+import com.shu.xxnote.Bmob.Users;
 
 import java.util.Random;
 

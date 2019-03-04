@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.SharedPreferences;
 
+
+import com.shu.xxnote.Bmob.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,6 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                           //  Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
                             Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
                             Bundle bundle = new Bundle();
-
                             intent.putExtra("userId",list.get(0).getObjectId());
                             startActivity(intent);
                             finish();

@@ -9,27 +9,32 @@ import android.widget.TextView;
 
 import com.loopeer.cardstack.CardStackView;
 import com.loopeer.cardstack.StackAdapter;
+import com.shu.xxnote.Bmob.Note;
 import com.shu.xxnote.R;
 
+import cn.bmob.v3.BmobObject;
+
 public class TestStackAdapter extends StackAdapter<Integer> {
+    Note[] notes;
+    String userId;
 
     public TestStackAdapter(Context context) {
         super(context);
     }
 
     @Override
-    public void bindView(Integer data, int position, CardStackView.ViewHolder holder) {
+    public void bindView(Integer color, int position, CardStackView.ViewHolder holder) {
         if (holder instanceof ColorItemLargeHeaderViewHolder) {
             ColorItemLargeHeaderViewHolder h = (ColorItemLargeHeaderViewHolder) holder;
-            h.onBind(data, position);
+            h.onBind(color, position);
         }
         if (holder instanceof ColorItemWithNoHeaderViewHolder) {
             ColorItemWithNoHeaderViewHolder h = (ColorItemWithNoHeaderViewHolder) holder;
-            h.onBind(data, position);
+            h.onBind(color, position);
         }
         if (holder instanceof ColorItemViewHolder) {
             ColorItemViewHolder h = (ColorItemViewHolder) holder;
-            h.onBind(data, position);
+            h.onBind(color, position);
         }
     }
 
@@ -45,13 +50,15 @@ public class TestStackAdapter extends StackAdapter<Integer> {
                 return new ColorItemWithNoHeaderViewHolder(view);
             default:
                 view = getLayoutInflater().inflate(R.layout.list_card_item, parent, false);
-                return new ColorItemViewHolder(view);
+                ColorItemViewHolder holder = new ColorItemViewHolder(view);
+                holder.setNotes(notes);
+                return holder;
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-            return R.layout.list_card_item_larger_header;
+            return R.layout.list_card_item;
 
     }
 
@@ -59,12 +66,16 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         View mLayout;
         View mContainerContent;
         TextView mTextTitle;
+        TextView mTextView;
+        Note[] notes;
+
 
         public ColorItemViewHolder(View view) {
             super(view);
             mLayout = view.findViewById(R.id.frame_list_card_item);
             mContainerContent = view.findViewById(R.id.container_list_content);
             mTextTitle = (TextView) view.findViewById(R.id.text_list_card_title);
+            mTextView = (TextView) view.findViewById(R.id.card_textView);
         }
 
         @Override
@@ -75,8 +86,12 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         public void onBind(Integer data, int position) {
             mLayout.getBackground().setColorFilter(ContextCompat.getColor(getContext(), data), PorterDuff.Mode.SRC_IN);
             mTextTitle.setText(String.valueOf(position));
+            mTextView.setText(notes[position].getComment());
         }
 
+        public void setNotes(Note[] notes) {
+            this.notes = notes;
+        }
     }
 
     static class ColorItemWithNoHeaderViewHolder extends CardStackView.ViewHolder {
@@ -142,4 +157,11 @@ public class TestStackAdapter extends StackAdapter<Integer> {
 
     }
 
+    public void setNotes(Note[] notes) {
+        this.notes = notes;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

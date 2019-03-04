@@ -1,4 +1,4 @@
-package com.shu.xxnote;
+package com.shu.xxnote.Bmob;
 
 import cn.bmob.v3.BmobObject;
 

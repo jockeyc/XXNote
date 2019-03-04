@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.shu.xxnote.Main2Activity;
 import com.shu.xxnote.adapter.NoteBookAdapter;
-import com.shu.xxnote.Notebook;
+import com.shu.xxnote.Bmob.Notebook;
 import com.shu.xxnote.R;
-import com.shu.xxnote.Users;
+import com.shu.xxnote.Bmob.Users;
 
 import java.util.ArrayList;
 import java.util.List;

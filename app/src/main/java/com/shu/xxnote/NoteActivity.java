@@ -17,10 +17,13 @@ import static com.shu.xxnote.R.id.viewpager;
 public class NoteActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private NoScrollViewPager viewPager;
     private RadioGroup radioGroup;
+    private String notebookId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
+        notebookId = getIntent().getExtras().getString("notebookId");
         initView();
         initListener();
     }
@@ -73,5 +76,9 @@ public class NoteActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     public void onPageScrollStateChanged(int i) {
 
+    }
+
+    public String getNotebookId() {
+        return notebookId;
     }
 }

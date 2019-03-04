@@ -1,18 +1,17 @@
 package com.shu.xxnote;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.shu.xxnote.Bmob.Users;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.MessageDigest;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;

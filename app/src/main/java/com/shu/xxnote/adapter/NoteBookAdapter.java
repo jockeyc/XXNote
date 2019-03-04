@@ -15,10 +15,10 @@ import android.widget.Toast;
 
 
 import com.shu.xxnote.NoteActivity;
-import com.shu.xxnote.Notebook;
+import com.shu.xxnote.Bmob.Notebook;
 import com.shu.xxnote.Pointer;
 import com.shu.xxnote.R;
-import com.shu.xxnote.Users;
+import com.shu.xxnote.Bmob.Users;
 
 import java.util.List;
 
@@ -99,6 +99,8 @@ public class NoteBookAdapter extends BaseAdapter {
                 //跳转到笔记界面
                 Intent intent = new Intent();
                 intent.setClass(context,NoteActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtra("notebookId",book.getObjectId());
                 context.startActivity(intent);
 
             }

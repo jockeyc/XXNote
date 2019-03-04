@@ -48,9 +48,8 @@
     <com.loopeer.cardstack.CardStackView
         android:id="@+id/stackview"
         android:layout_width="0dp"
-        android:layout_height="504dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:background="@android:color/white"
         android:clipToPadding="false"
         android:paddingLeft="12dp"
@@ -58,7 +57,9 @@
         android:paddingRight="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

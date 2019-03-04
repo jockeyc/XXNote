@@ -1,6 +1,9 @@
 package com.shu.xxnote;
 
 
+import com.shu.xxnote.Bmob.Notebook;
+import com.shu.xxnote.Bmob.Users;
+
 import java.util.ArrayList;
 import java.util.List;
 
