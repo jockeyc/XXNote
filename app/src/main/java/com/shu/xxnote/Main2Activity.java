@@ -1,9 +1,7 @@
 package com.shu.xxnote;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.shu.xxnote.adapter.MainContentPagerAdapter;
+import com.shu.xxnote.adapter.NoteBookAdapter;
 import com.shu.xxnote.customView.NoScrollViewPager;
 import com.shu.xxnote.fragment.FolderFragment;
 import com.shu.xxnote.utils.Constants;

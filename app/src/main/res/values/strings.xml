@@ -3,5 +3,8 @@
     <string name="cnname">某某笔记</string>
     <string name="string1">免费注册或登录</string>
     <string name="hint1">手机号、邮箱</string>
+    <string name="menu_action_all_down">All down</string>
+    <string name="menu_action_up_down">Up down</string>
+    <string name="menu_action_up_down_stack">Up down stack</string>
 
 </resources>

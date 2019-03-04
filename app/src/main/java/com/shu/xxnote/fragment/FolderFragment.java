@@ -1,27 +1,22 @@
 package com.shu.xxnote.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.TestLooperManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shu.xxnote.Main2Activity;
-import com.shu.xxnote.NoteBookAdapter;
+import com.shu.xxnote.adapter.NoteBookAdapter;
 import com.shu.xxnote.Notebook;
 import com.shu.xxnote.R;
 import com.shu.xxnote.Users;
-import com.shu.xxnote.utils.notebook_main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +25,6 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class FolderFragment extends BaseFragment {
     GridView gridView;

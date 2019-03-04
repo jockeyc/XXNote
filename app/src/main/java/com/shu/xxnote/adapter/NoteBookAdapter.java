@@ -1,4 +1,4 @@
-package com.shu.xxnote;
+package com.shu.xxnote.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +14,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.shu.xxnote.utils.notebook_main;
+import com.shu.xxnote.NoteActivity;
+import com.shu.xxnote.Notebook;
+import com.shu.xxnote.Pointer;
+import com.shu.xxnote.R;
+import com.shu.xxnote.Users;
 
 import java.util.List;
 
