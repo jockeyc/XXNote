@@ -2,9 +2,13 @@ package com.shu.xxnote.adapter;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.loopeer.cardstack.CardStackView;
@@ -12,7 +16,12 @@ import com.loopeer.cardstack.StackAdapter;
 import com.shu.xxnote.Bmob.Note;
 import com.shu.xxnote.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.datatype.BmobFile;
 
 public class TestStackAdapter extends StackAdapter<Integer> {
     Note[] notes;
@@ -67,8 +76,10 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         View mContainerContent;
         TextView mTextTitle;
         TextView mTextView;
+        TextView mTitile;
+        TextView mDate;
+        ImageButton mImageButton;
         Note[] notes;
-
 
         public ColorItemViewHolder(View view) {
             super(view);
@@ -76,6 +87,9 @@ public class TestStackAdapter extends StackAdapter<Integer> {
             mContainerContent = view.findViewById(R.id.container_list_content);
             mTextTitle = (TextView) view.findViewById(R.id.text_list_card_title);
             mTextView = (TextView) view.findViewById(R.id.card_textView);
+            mTitile = (TextView) view.findViewById(R.id.textView_title);
+            mDate = (TextView)view.findViewById(R.id.textView_date);
+            mImageButton = (ImageButton)view.findViewById(R.id.image_large_button);
         }
 
         @Override
@@ -87,6 +101,46 @@ public class TestStackAdapter extends StackAdapter<Integer> {
             mLayout.getBackground().setColorFilter(ContextCompat.getColor(getContext(), data), PorterDuff.Mode.SRC_IN);
             mTextTitle.setText(String.valueOf(position));
             mTextView.setText(notes[position].getComment());
+            mTitile.setText(notes[position].getTitle());
+            mDate.setText(notes[position].getDate());
+            final String source = notes[position].getBmobfile().getFileUrl();
+            System.out.println(source);
+            new DownloadImageTask().execute(source) ;
+            mImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+        private class DownloadImageTask extends AsyncTask<String, Void, Drawable>
+        {
+
+            protected Drawable doInBackground(String... urls) {
+                return loadImageFromNetwork(urls[0]);
+            }
+
+            protected void onPostExecute(Drawable result) {
+                mImageButton.setImageDrawable(result);
+            }
+        }
+
+        private Drawable loadImageFromNetwork(String imageUrl)
+        {
+            Drawable drawable = null;
+            try {
+                // 可以在这里通过文件名来判断，是否本地有此图片
+                drawable = Drawable.createFromStream(
+                        new URL(imageUrl).openStream(), "image.jpg");
+            } catch (IOException e) {
+                Log.d("test", e.getMessage());
+            }
+            if (drawable == null) {
+                Log.d("test", "null drawable");
+            } else {
+                Log.d("test", "not null drawable");
+            }
+            return drawable ;
         }
 
         public void setNotes(Note[] notes) {
@@ -161,7 +215,4 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         this.notes = notes;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 }
