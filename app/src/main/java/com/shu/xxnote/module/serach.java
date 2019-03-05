@@ -52,16 +52,9 @@ public class serach extends AppCompatActivity {
     private Record helper = new Record(this);;
     private SQLiteDatabase db;
     private BaseAdapter adapter;
-    private ImageView imageView;
     private ImageView imageview2;
-    private Context mContext;
 
-    private MainPresenter mPresenter;
-    File mTmpFile;
-    Uri imageUri;
 
-    private static final int PERMISSIONS_REQUEST_CODE = 1;
-    private static final int CAMERA_REQUEST_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +69,8 @@ public class serach extends AppCompatActivity {
         imageview2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                takePhoto();
+                Intent intent = new Intent(serach.this, OrcResult.class);
+                startActivity(intent);
             }
         });
 
@@ -158,73 +152,9 @@ public class serach extends AppCompatActivity {
         queryData("");
     }
 
-    //拍照
-    private void takePhoto(){
 
-        if (!hasPermission()) {
-            return;
-        }
 
-        Intent intent = new Intent();
-        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/img";
-        if (new File(path).exists()) {
-            try {
-                new File(path).createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        String filename = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        mTmpFile = new File(path, filename + ".jpg");
-        mTmpFile.getParentFile().mkdirs();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            String authority = getPackageName() + ".provider";
-            imageUri = FileProvider.getUriForFile(this, authority, mTmpFile);
-        } else {
-            imageUri = Uri.fromFile(mTmpFile);
-        }
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-
-        startActivityForResult(intent, CAMERA_REQUEST_CODE);
-
-    }
-
-    private boolean hasPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, PERMISSIONS_REQUEST_CODE);
-            return false;
-        }else {
-            return true;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSIONS_REQUEST_CODE) {
-            if (grantResults.length > 0) {
-                for (int grantResult : grantResults) {
-                    if (grantResult == PackageManager.PERMISSION_DENIED) {
-                        return;
-                    }
-                }
-                takePhoto();
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            Bitmap photo = BitmapFactory.decodeFile(mTmpFile.getAbsolutePath());
-            mPresenter.getRecognitionResultByImage(photo);
-            imageView.setImageBitmap(photo);
-        }
-    }
 
     /**
      * 插入数据

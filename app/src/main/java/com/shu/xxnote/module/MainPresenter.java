@@ -30,8 +30,8 @@ public class MainPresenter implements MainContract.Presenter{
     private BaiduOCRService baiduOCRService;
 
     private static final String CLIENT_CREDENTIALS = "client_credentials";
-    private static final String API_KEY = "G18MccziGf7iyHK5CCPIjHXZ";
-    private static final String SECRET_KEY = "XeMNckK8w8RiCHIfGUzyvcYAX7rSYSux";
+    private static final String API_KEY = "MTkh7il6KmfPGkxuqOwU8H0P";
+    private static final String SECRET_KEY = "gOHL4UOOGtr0cAgjMi6B8v5N0hAknWGe";
     private static final String ACCESS_TOKEN = "24.d22914a2d4e819b0a5ec69126bd2de86.2592000.1530693758.282335-11347860";
 
     public MainPresenter(MainContract.View mView) {

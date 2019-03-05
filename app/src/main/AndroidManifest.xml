@@ -46,8 +46,10 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".NoteActivity" />
+        <activity android:name=".notebook_main"/>
         <activity android:name=".module.serach"/>
-        <activity android:name=".notebook_main"></activity>
+        <activity android:name=".module.OrcResult"/>
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"
