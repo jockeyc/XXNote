@@ -5,8 +5,7 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class Note extends BmobObject {
     private String type,comment;
-    private BmobFile bmobFile;
-    private Notebook notebook;
+    private BmobFile bmobfile;
 
     public String getType() {
         return type;
@@ -24,19 +23,12 @@ public class Note extends BmobObject {
         this.comment = comment;
     }
 
-    public BmobFile getBmobFile() {
-        return bmobFile;
+    public BmobFile getBmobfile() {
+        return bmobfile;
     }
 
-    public void setBmobFile(BmobFile bmobFile) {
-        this.bmobFile = bmobFile;
+    public void setBmobfile(BmobFile bmobfile) {
+        this.bmobfile = bmobfile;
     }
 
-    public Notebook getNotebook() {
-        return notebook;
-    }
-
-    public void setNotebook(Notebook notebook) {
-        this.notebook = notebook;
-    }
 }

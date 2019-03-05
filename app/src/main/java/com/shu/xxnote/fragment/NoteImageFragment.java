@@ -28,6 +28,7 @@ import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -40,12 +41,13 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
     public Note[] notes;
     public Integer[] DATAS;
     public static Integer[] TEST_DATAS = new Integer[]{
-            R.color.color_1, R.color.color_2, R.color.color_3, R.color.color_4, R.color.color_5,
-            R.color.color_6, R.color.color_7, R.color.color_8, R.color.color_9, R.color.color_10,
-            R.color.color_11, R.color.color_12, R.color.color_13, R.color.color_14, R.color.color_15,
-            R.color.color_16, R.color.color_17, R.color.color_18, R.color.color_19, R.color.color_20,
-            R.color.color_21, R.color.color_22, R.color.color_23, R.color.color_24, R.color.color_25,
-            R.color.color_26
+            R.color.color_1, R.color.color_2, R.color.color_3, R.color.color_4,
+            R.color.color_5, R.color.color_6, R.color.color_7, R.color.color_8,
+            R.color.color_9, R.color.color_10, R.color.color_11, R.color.color_12,
+            R.color.color_13, R.color.color_14, R.color.color_15, R.color.color_16,
+            R.color.color_17, R.color.color_18, R.color.color_19, R.color.color_20,
+            R.color.color_21, R.color.color_22, R.color.color_23, R.color.color_24,
+            R.color.color_25, R.color.color_26
     };
     private String notebookId;
 
@@ -60,39 +62,42 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
     private void initBmob() {
         notebookId = ((NoteActivity)getActivity()).getNotebookId();
         Bmob.initialize(getActivity(),"b69650c5254cf30c803d7b958a002ef1");
+        System.out.println(notebookId+"!!!!!!!!!");
         BmobQuery<Note> query = new BmobQuery<Note>();
-        BmobQuery<Notebook> innerQuery = new BmobQuery<>();
-        innerQuery.addWhereEqualTo("objectId",notebookId);
-        Notebook notebook = new Notebook();
-        notebook.setObjectId(notebookId);
-        query.addWhereMatchesQuery("notebook","Notebook",innerQuery);
+//      BmobQuery<Notebook> innerQuery = new BmobQuery<>();
+//      innerQuery.addWhereEqualTo("objectId",notebookId);
+        //Notebook notebook = new Notebook();
+       // notebook.setObjectId(notebookId);
+        query.addWhereEqualTo("notebook","d3d87d2d63");
+        //query.addWhereEqualTo("notebook",new BmobPointer(notebook));
+        //query.addWhereMatchesQuery("notebook","Notebook",innerQuery);
+        System.out.println();
         query.findObjects(new FindListener<Note>() {
             @Override
-                        public void done(List<Note> object, BmobException e) {
-                            System.out.println(object.size()+"!!!!!!!!!!!!!!!!!!!");
-                            if(e==null){
-                                notes = new Note[object.size()];
-                                DATAS = new Integer[object.size()];
-                                for (int i=0;i<object.size();i++) {
-                                    System.out.println("i:"+i);
-                                    notes[i] = new Note();
-                                    notes[i].setObjectId(object.get(i).getObjectId());
-                                    notes[i].setType(object.get(i).getType());
-                                    notes[i].setComment(object.get(i).getComment());
-                                    notes[i].setNotebook(object.get(i).getNotebook());
-                                    System.out.println("notes:"+notes[i].getComment());
-                                }
+            public void done(List<Note> list, BmobException e) {
+                System.out.println(list.size()+"!!!!!!!!!!!!!!!!!!!");
+                if(e==null){
+                    notes = new Note[list.size()];
+                    DATAS = new Integer[list.size()];
+                    for (int i=0;i<list.size();i++) {
+                        System.out.println("i:"+i);
+                        notes[i] = new Note();
+                        notes[i].setObjectId(list.get(i).getObjectId());
+                        notes[i].setType(list.get(i).getType());
+                        notes[i].setComment(list.get(i).getComment());
+                        System.out.println("notes:"+notes[i].getComment());
+                    }
 
-                                int i=0,j=0;
-                                while (i<object.size()){
-                                    DATAS[i++]=TEST_DATAS[i];
-                                    if(j++ ==26)j=0;
-                                }
-                                initView(rootView);
-                            }else{
-                                System.out.println(e.getMessage()+","+e.getErrorCode());
+                    int i=0,j=0;
+                    while (i<list.size()){
+                        DATAS[i++]=TEST_DATAS[i];
+                        if(j++ ==26)j=0;
+                    }
+                    initView(rootView);
+                }else{
+                    System.out.println(e.getMessage()+","+e.getErrorCode());
                     //Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-                            }
+                }
             }
         });
     }
