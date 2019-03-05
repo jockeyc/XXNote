@@ -39,11 +39,11 @@ public class NoteBookAdapter extends BaseAdapter {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         this.list = list;
-        coverId[0] = R.drawable.cover1;
-        coverId[1] = R.drawable.cover2;
-        coverId[2] = R.drawable.cover3;
-        coverId[3] = R.drawable.cover4;
-        coverId[4] = R.drawable.cover5;
+        coverId[0] = R.drawable.shape_rectangle_with_smaller_radius_1;
+        coverId[1] = R.drawable.shape_rectangle_with_smaller_radius_2;
+        coverId[2] = R.drawable.shape_rectangle_with_smaller_radius_3;
+        coverId[3] = R.drawable.shape_rectangle_with_smaller_radius_4;
+        coverId[4] = R.drawable.shape_rectangle_with_smaller_radius_1;
     }
 
     @Override

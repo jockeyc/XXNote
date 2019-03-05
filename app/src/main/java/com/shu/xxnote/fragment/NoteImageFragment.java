@@ -62,32 +62,22 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
     private void initBmob() {
         notebookId = ((NoteActivity)getActivity()).getNotebookId();
         Bmob.initialize(getActivity(),"b69650c5254cf30c803d7b958a002ef1");
-        System.out.println(notebookId+"!!!!!!!!!");
         BmobQuery<Note> query = new BmobQuery<Note>();
-//      BmobQuery<Notebook> innerQuery = new BmobQuery<>();
-//      innerQuery.addWhereEqualTo("objectId",notebookId);
-        //Notebook notebook = new Notebook();
-       // notebook.setObjectId(notebookId);
-        query.addWhereEqualTo("notebook","d3d87d2d63");
-        //query.addWhereEqualTo("notebook",new BmobPointer(notebook));
-        //query.addWhereMatchesQuery("notebook","Notebook",innerQuery);
+        query.addWhereEqualTo("notebook",notebookId);
         System.out.println();
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
-                System.out.println(list.size()+"!!!!!!!!!!!!!!!!!!!");
                 if(e==null){
                     notes = new Note[list.size()];
                     DATAS = new Integer[list.size()];
                     for (int i=0;i<list.size();i++) {
-                        System.out.println("i:"+i);
                         notes[i] = new Note();
                         notes[i].setObjectId(list.get(i).getObjectId());
                         notes[i].setType(list.get(i).getType());
                         notes[i].setComment(list.get(i).getComment());
                         System.out.println("notes:"+notes[i].getComment());
                     }
-
                     int i=0,j=0;
                     while (i<list.size()){
                         DATAS[i++]=TEST_DATAS[i];
@@ -96,7 +86,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     initView(rootView);
                 }else{
                     System.out.println(e.getMessage()+","+e.getErrorCode());
-                    //Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });

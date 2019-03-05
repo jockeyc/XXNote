@@ -12,7 +12,7 @@
     <FrameLayout
         android:id="@+id/frame_list_card_item"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="150dp"
         android:background="@drawable/shape_rectangle_with_radius">
 
         <TextView
@@ -23,7 +23,7 @@
             android:textColor="@android:color/white"
             android:textSize="40sp"
             android:textStyle="bold"
-            tools:text="12"/>
+            tools:text="12" />
     </FrameLayout>
 
     <LinearLayout

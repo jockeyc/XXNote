@@ -12,7 +12,7 @@
         android:layout_height="160dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="6dp"
-        android:background="#FF6600"
+        android:background="@drawable/shape_rectangle_with_radius"
         android:ellipsize="end"
         android:gravity="center"
         android:lines="4"
