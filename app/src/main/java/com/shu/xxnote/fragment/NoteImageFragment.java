@@ -68,7 +68,7 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 //      innerQuery.addWhereEqualTo("objectId",notebookId);
         //Notebook notebook = new Notebook();
        // notebook.setObjectId(notebookId);
-        query.addWhereEqualTo("notebook","d3d87d2d63");
+        query.addWhereEqualTo("notebook",notebookId);
         //query.addWhereEqualTo("notebook",new BmobPointer(notebook));
         //query.addWhereMatchesQuery("notebook","Notebook",innerQuery);
         System.out.println();
