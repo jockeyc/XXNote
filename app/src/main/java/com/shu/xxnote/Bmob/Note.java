@@ -1,5 +1,7 @@
 package com.shu.xxnote.Bmob;
 
+import java.util.Date;
+
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -43,4 +45,19 @@ public class Note extends BmobObject {
         this.bmobfile = bmobfile;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

@@ -145,7 +145,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
         Bmob.initialize(getActivity(),"b69650c5254cf30c803d7b958a002ef1");
         BmobQuery<Note> query = new BmobQuery<Note>();
         query.addWhereEqualTo("notebook",notebookId);
-        System.out.println();
         query.findObjects(new FindListener<Note>() {
             @Override
             public void done(List<Note> list, BmobException e) {
@@ -157,7 +156,9 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                         notes[i].setObjectId(list.get(i).getObjectId());
                         notes[i].setType(list.get(i).getType());
                         notes[i].setComment(list.get(i).getComment());
-                        System.out.println("notes:"+notes[i].getComment());
+                        notes[i].setTitle(list.get(i).getTitle());
+                        notes[i].setBmobfile(list.get(i).getBmobfile());
+                        notes[i].setDate(list.get(i).getCreatedAt());
                     }
                     int i=0,j=0;
                     while (i<list.size()){
