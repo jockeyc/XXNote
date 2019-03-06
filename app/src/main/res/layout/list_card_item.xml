@@ -12,7 +12,7 @@
     <FrameLayout
         android:id="@+id/frame_list_card_item"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
         android:background="@drawable/shape_rectangle_with_radius">
 
         <android.support.constraint.ConstraintLayout
