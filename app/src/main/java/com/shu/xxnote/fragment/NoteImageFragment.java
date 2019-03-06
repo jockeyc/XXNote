@@ -123,7 +123,7 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                       @Override
                       public void done(String s, BmobException e) {
                           if (e == null) {
-                              Toast.makeText(getActivity(), "上传图片成功，返回objectId为：" + s, Toast.LENGTH_SHORT).show();
+                              Toast.makeText(getActivity(), "上传图片成功" , Toast.LENGTH_SHORT).show();
                           } else {
                               Toast.makeText(getActivity(), "上传图片失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                           }

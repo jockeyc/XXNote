@@ -6,11 +6,9 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
 public class Note extends BmobObject {
-    private String type,comment,title,notebook;
+    private String type,comment,title,notebook,date;
     private BmobFile bmobfile;
-    public  void setTitle(String title){
-        this.title=title;
-    }
+
     public  String getTitle(String title){
         return  title;
     }
