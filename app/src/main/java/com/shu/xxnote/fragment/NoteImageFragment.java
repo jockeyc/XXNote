@@ -98,6 +98,7 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
         cardStackView.setItemExpendListener(this);
         mTestStackAdapter = new TestStackAdapter(getActivity());
         mTestStackAdapter.setNotes(notes);
+        mTestStackAdapter.setContext(getActivity());
         cardStackView.setAdapter(mTestStackAdapter);
         cardStackView.setAnimatorAdapter(new UpDownAnimatorAdapter(cardStackView));
 

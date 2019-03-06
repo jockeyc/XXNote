@@ -1,5 +1,6 @@
 package com.shu.xxnote.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -13,19 +14,25 @@ import android.widget.TextView;
 
 import com.loopeer.cardstack.CardStackView;
 import com.loopeer.cardstack.StackAdapter;
+import com.previewlibrary.GPreviewBuilder;
+import com.previewlibrary.ZoomMediaLoader;
 import com.shu.xxnote.Bmob.Note;
+import com.shu.xxnote.ImageLoader.TestImageLoader;
+import com.shu.xxnote.ImageLoader.UserViewInfo;
 import com.shu.xxnote.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
 public class TestStackAdapter extends StackAdapter<Integer> {
     Note[] notes;
-    String userId;
+    Context context;
 
     public TestStackAdapter(Context context) {
         super(context);
@@ -61,6 +68,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
                 view = getLayoutInflater().inflate(R.layout.list_card_item, parent, false);
                 ColorItemViewHolder holder = new ColorItemViewHolder(view);
                 holder.setNotes(notes);
+                holder.setContext(context);
                 return holder;
         }
     }
@@ -80,6 +88,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         TextView mDate;
         ImageButton mImageButton;
         Note[] notes;
+        Context context;
 
         public ColorItemViewHolder(View view) {
             super(view);
@@ -99,7 +108,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
 
         public void onBind(Integer data, int position) {
             mLayout.getBackground().setColorFilter(ContextCompat.getColor(getContext(), data), PorterDuff.Mode.SRC_IN);
-            mTextTitle.setText(String.valueOf(position));
+            mTextTitle.setText(String.valueOf(position+1));
             mTextView.setText(notes[position].getComment());
             mTitile.setText(notes[position].getTitle());
             mDate.setText(notes[position].getDate());
@@ -109,7 +118,16 @@ public class TestStackAdapter extends StackAdapter<Integer> {
             mImageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    ZoomMediaLoader.getInstance().init(new TestImageLoader());
+                    List<UserViewInfo> mThumbViewInfoList = new ArrayList<>();
+                    mThumbViewInfoList.add(new UserViewInfo(source));
+                    GPreviewBuilder.from((Activity) context)//activity实例必须
+                            .setData(mThumbViewInfoList)//集合
+                            .setCurrentIndex(0)
+                            .setSingleFling(false)//是否在黑屏区域点击返回
+                            .setDrag(false)//是否禁用图片拖拽返回
+                            .setType(GPreviewBuilder.IndicatorType.Dot)//指示器类型
+                            .start();//启动
                 }
             });
         }
@@ -121,7 +139,8 @@ public class TestStackAdapter extends StackAdapter<Integer> {
             }
 
             protected void onPostExecute(Drawable result) {
-                mImageButton.setImageDrawable(result);
+                result.setBounds(0,0,180,180);
+                mImageButton.setBackground(result);
             }
         }
 
@@ -145,6 +164,10 @@ public class TestStackAdapter extends StackAdapter<Integer> {
 
         public void setNotes(Note[] notes) {
             this.notes = notes;
+        }
+
+        public void setContext(Context context) {
+            this.context = context;
         }
     }
 
@@ -215,4 +238,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         this.notes = notes;
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
 }
