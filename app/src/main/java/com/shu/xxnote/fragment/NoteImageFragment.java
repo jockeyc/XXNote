@@ -2,6 +2,7 @@ package com.shu.xxnote.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -95,7 +96,18 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     Toast.makeText(getActivity(),
                             "你选择了" + items[choice],
                             Toast.LENGTH_SHORT).show();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                        }
+                    },1000);
                 }
+                if (choice==0){
+                    //Intent intent = new Intent(NoteImageFragment.this, OrcResult.class);
+                    //startActivity(intent);
+                    BmobInsterPic();
+                }
+
             }
         });
         singleChoiceDialog.show();
@@ -191,7 +203,8 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     //成功的话弹出dialog设置title和comment,type
                     //点击确定之后
                     //调用
-                    BmobInsterPic();
+
+
                 }
             }
 
