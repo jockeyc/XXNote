@@ -4,22 +4,13 @@ import java.util.Date;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.datatype.BmobPointer;
 
 public class Note extends BmobObject {
-
-   /* public Note (String type,String title,String notebook,String date,BmobFile bmobfile){
-        this.type=type;
-        this.title = title;
-        this.notebook = notebook;
-        this.date = date;
-        this.bmobfile = bmobfile;
-    }*/
-    private String type;
-    private String comment;
-    private String title;
-    private String notebook;
-    private String date;
+    private String type,comment,title,notebook;
     private BmobFile bmobfile;
+    private String date;
+    private Notebook Book;
 
     public  String getTitle(String title){
         return  title;
@@ -69,5 +60,21 @@ public class Note extends BmobObject {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setnotebook(String notebook){
+        this.notebook=notebook;
+    }
+
+    public String getnotebook() {
+        return notebook;
+    }
+
+    public void setBook(Notebook Notebook) {
+        this.Book = Notebook;
+    }
+
+    public Notebook getBook() {
+        return Book;
     }
 }

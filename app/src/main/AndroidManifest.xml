@@ -40,7 +40,6 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".NoteActivity" />
-
     </application>
 
 </manifest>
