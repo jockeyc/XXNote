@@ -4,9 +4,21 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
 public class Note extends BmobObject {
-    private String type,comment;
+    private String type,comment,title,notebook;
     private BmobFile bmobfile;
+    public  void setTitle(String title){
+        this.title=title;
+    }
+    public  String getTitle(String title){
+        return  title;
+    }
+    public String getNotebook() {
+        return notebook;
+    }
 
+    public void setNotebookId(String notebook) {
+        this.notebook=notebook;
+    }
     public String getType() {
         return type;
     }

@@ -1,5 +1,7 @@
 package com.shu.xxnote.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,27 +14,38 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.StackView;
+import android.widget.Toast;
 
 import com.loopeer.cardstack.CardStackView;
 import com.loopeer.cardstack.UpDownAnimatorAdapter;
 import com.shu.xxnote.Bmob.Note;
 import com.shu.xxnote.Bmob.Notebook;
 import com.shu.xxnote.Main2Activity;
+import com.shu.xxnote.MainActivity;
 import com.shu.xxnote.NoteActivity;
 import com.shu.xxnote.R;
 import com.shu.xxnote.adapter.TestStackAdapter;
 
 import java.io.Console;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobPointer;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
+
+import static cn.bmob.v3.BmobRealTimeData.TAG;
 
 public class NoteImageFragment extends BaseFragment implements CardStackView.ItemExpendListener{
+    String picStringUrl,type="picture",title="上传是什么sb",comment="是我没错";
+
+    int choice;
     View rootView;
     CardStackView cardStackView;
     ImageButton button_add;
@@ -56,7 +69,75 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = getSubView(inflater,container);
         initBmob();
+
+
         return rootView;
+
+    }
+
+
+    private void showSingDialog(){
+        final String[] items = {"图片","音频","视频"};
+        AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(getActivity());
+        singleChoiceDialog.setIcon(R.drawable.icon);
+        singleChoiceDialog.setTitle("选择插入笔记类型");
+        //第二个参数是默认的选项
+        singleChoiceDialog.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                choice= which;
+            }
+        });
+        singleChoiceDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (choice!=-1){
+                    Toast.makeText(getActivity(),
+                            "你选择了" + items[choice],
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        singleChoiceDialog.show();
+    }
+
+
+    private  void BmobInsterPic() {
+        //final String imagePath = getActivity().getExternalCacheDir() + "/output_image.jpg";
+        //final BmobFile pic = new BmobFile(new File(imagePath));
+        final Note note = new Note();
+        //pic.uploadblock(new UploadFileListener() {
+           // @Override
+            //public void done(BmobException e) {
+                //if (e == null) {
+                    Log.w(TAG, "上传成功");
+                    // picStringUrl= pic.getFileUrl();
+                    //note.setBmobfile(pic);
+        notebookId = ((NoteActivity)getActivity()).getNotebookId();
+                    note.setNotebookId(notebookId);
+                    note.setType(type);
+                    note.setComment(comment);
+                    note.setTitle(title);
+
+        note.save(new SaveListener<String>() {
+                      @Override
+                      public void done(String s, BmobException e) {
+                          if (e == null) {
+                              Toast.makeText(getActivity(), "上传图片成功，返回objectId为：" + s, Toast.LENGTH_SHORT).show();
+                          } else {
+                              Toast.makeText(getActivity(), "上传图片失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                          }
+
+                      }
+                  });
+
+
+                //} else {
+                   // Log.w(TAG, "上传失败" + e.getErrorCode());
+                //}
+            //}
+
+       // });
     }
 
     private void initBmob() {
@@ -93,13 +174,27 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 
     private void initView(View rootView) {
         cardStackView = (CardStackView)rootView.findViewById(R.id.stackview);
-        button_add = (ImageButton)rootView.findViewById(R.id.imageButton3);
+
         cardStackView.setItemExpendListener(this);
         mTestStackAdapter = new TestStackAdapter(getActivity());
         mTestStackAdapter.setNotes(notes);
         cardStackView.setAdapter(mTestStackAdapter);
         cardStackView.setAnimatorAdapter(new UpDownAnimatorAdapter(cardStackView));
+        button_add = (ImageButton)rootView.findViewById(R.id.imageButton3);
+        button_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSingDialog();
+                if(choice==0){
+                    //调用本地存储空间，获取图片，得到本地图片的URL
+                    //成功的话弹出dialog设置title和comment,type
+                    //点击确定之后
+                    //调用
+                    BmobInsterPic();
+                }
+            }
 
+        });
         new Handler().postDelayed(
                 new Runnable() {
                     @Override
