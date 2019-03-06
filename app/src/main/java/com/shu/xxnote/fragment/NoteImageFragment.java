@@ -3,6 +3,8 @@ package com.shu.xxnote.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -29,6 +31,7 @@ import com.shu.xxnote.adapter.TestStackAdapter;
 
 import java.io.Console;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,11 +44,12 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
+import static android.app.Activity.RESULT_OK;
 import static cn.bmob.v3.BmobRealTimeData.TAG;
 
 public class NoteImageFragment extends BaseFragment implements CardStackView.ItemExpendListener{
     String picStringUrl,type="picture",title="上传是什么sb",comment="是我没错";
-
+    private static final int REQUEST_CODE_SELECT_PHOTO = 1;
     int choice;
     View rootView;
     CardStackView cardStackView;
@@ -103,9 +107,14 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     },1000);
                 }
                 if (choice==0){
-                    //Intent intent = new Intent(NoteImageFragment.this, OrcResult.class);
+               //Intent intent = new Intent(NoteImageFragment.this, OrcResult.class);
                     //startActivity(intent);
-                    BmobInsterPic();
+                    Intent intent = new Intent();
+                    intent.setType("image/*");// 开启Pictures画面Type设定为image
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(intent, REQUEST_CODE_SELECT_PHOTO);
+
+              BmobInsterPic();
                 }
 
             }
@@ -233,6 +242,25 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 
     @Override
     public void onItemExpend(boolean expend) {
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        /*if (resultCode == RESULT_OK) {
+            Uri uri = Crop.getOutput(data);
+            Bitmap bm;
+            try {
+                bm = ImageUtils.getZoomOutBitmap(this.getContentResolver(), uri, 750, 750);
+            } catch (FileNotFoundException e) {
+                Toast.makeText(this, "图片找不到", Toast.LENGTH_SHORT).show();
+                return;
+            }
+//这里上传图片到服务器
+            //HttpUtils.uploadCircleImg(rQueue, new BitmapUploadParam(uri.getPath() + ".jpg", bm, 70), this,
+            //CODE_EVAL_UPLOAD);
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            Toast.makeText(this, Crop.getError(data).getMessage(), Toast.LENGTH_SHORT).show();
+        }*/
 
     }
 }
