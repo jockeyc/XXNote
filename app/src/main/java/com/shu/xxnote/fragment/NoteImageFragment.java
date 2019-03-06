@@ -152,6 +152,9 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     if(e==null){
                         Log.w(TAG, "上传成功");
                         notebookId = ((NoteActivity) getActivity()).getNotebookId();
+                        Notebook notebook= new Notebook();
+                        notebook.setObjectId(notebookId);
+                        note.setBook(notebook);
                         note.setNotebookId(notebookId);
                         note.setType(type);
                         note.setComment(comment);
