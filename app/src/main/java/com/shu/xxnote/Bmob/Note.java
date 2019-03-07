@@ -12,6 +12,16 @@ public class Note extends BmobObject {
     private String date;
     private Notebook Book;
 
+    public  String getTitle(String title){
+        return  title;
+    }
+    public String getNotebook() {
+        return notebook;
+    }
+
+    public void setNotebookId(String notebook) {
+        this.notebook=notebook;
+    }
     public String getType() {
         return type;
     }
