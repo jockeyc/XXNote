@@ -58,14 +58,13 @@ public class RegisterActivity extends AppCompatActivity {
         userName = getIntent().getExtras().getString("username");
         setContentView(R.layout.activity_register);/////////////////////////注册页面//////////////////////////
         et_username = (EditText)findViewById(R.id.editText2);//用户名编辑框
-        userName = et_username.getText().toString().trim();//用户名(trim除去空格)
         et_psw = (EditText)findViewById(R.id.editText3);//密码编辑框
         et_username.setText(userName);
         btn1 = (Button)findViewById(R.id.button);
         btn1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                userName = et_username.getText().toString().trim();//用户名(trim除去空格)
                 psw = et_psw.getText().toString();//密码
                 final String md5Psw = MD5Utils.md5(psw);
 
@@ -91,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     }else{
                                         Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                        intent.putExtra("username",userName);
                                         startActivity(intent);
                                         finish();
                                     }

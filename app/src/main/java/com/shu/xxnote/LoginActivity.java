@@ -36,12 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         et_username = (EditText)findViewById(R.id.editText2);//用户名编辑框
         et_psw = (EditText)findViewById(R.id.editText3);//密码编辑框
         et_username.setText(userName);
-        userName = et_username.getText().toString().trim();//用户名(trim除去空格)
+
 
         btn1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 psw = et_psw.getText().toString();//密码
+                userName = et_username.getText().toString().trim();//用户名(trim除去空格)
                 final String md5Psw = RegisterActivity.MD5Utils.md5(psw);//对输入密码进行md5加密
 
                 BmobQuery<Users> q1 = new BmobQuery<>();
