@@ -92,7 +92,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 
     }
 
-
     private void showSingDialog() {
         final String[] items = {"图片", "音频", "视频"};
         AlertDialog.Builder singleChoiceDialog = new AlertDialog.Builder(getActivity());
@@ -125,8 +124,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
                     intent.setType("image/*");// 开启Pictures画面Type设定为image
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(intent, REQUEST_CODE_SELECT_PHOTO);
-
-
                 }
 
             }
@@ -179,7 +176,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 
         });
 
-
     }
 
     private void initBmob() {
@@ -217,7 +213,6 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
 
     private void initView(View rootView) {
         cardStackView = (CardStackView) rootView.findViewById(R.id.stackview);
-
         cardStackView.setItemExpendListener(this);
         mTestStackAdapter = new TestStackAdapter(getActivity());
         mTestStackAdapter.setNotes(notes);
@@ -309,17 +304,10 @@ public class NoteImageFragment extends BaseFragment implements CardStackView.Ite
         if (resultCode == RESULT_OK ) {
             Toast.makeText(getActivity(), "获取图片返回", Toast.LENGTH_SHORT).show();
             uri = data.getData();
-
-            System.out.println("URI？？？？？？"+uri.toString());
-           // Toast.makeText(getActivity(), "图片uri"+  uri.toString(), Toast.LENGTH_SHORT).show();
-
+            System.out.println("URI"+uri.toString());
             showImageUplodDialog(uri);
-            System.out.println("URI！！！！！！"+uri.toString());
-//这里上传图片到服务器
-            //HttpUtils.uploadCircleImg(rQueue, new BitmapUploadParam(uri.getPath() + ".jpg", bm, 70), this,
-            //CODE_EVAL_UPLOAD);
+            System.out.println("URI"+uri.toString());
         }
         super.onActivityResult(requestCode, resultCode, data);
-
     }
 }
