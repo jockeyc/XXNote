@@ -116,7 +116,6 @@ public class NoteBookAdapter extends BaseAdapter {
 
                 Button btn_delete = (Button) dialog.findViewById(R.id.btn_delete);
                 Button btn_rename = (Button) dialog.findViewById(R.id.btn_rename);
-                Button add_notes = (Button) dialog.findViewById(R.id.add_notes);
                 //删除
                 btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
