@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEDED"
     tools:context=".MainActivity">
 
     <ImageView
@@ -27,7 +28,7 @@
         android:fontFamily="casual"
         android:text="@string/cnname"
         android:textAllCaps="false"
-        android:textColor="#2DBE5F"
+        android:textColor="#68838B	"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +59,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="20dp"
-        android:background="#2DBE5F"
+        android:background="#68838B	"
         android:text="注册"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -100,7 +101,7 @@
         android:layout_marginBottom="50dp"
         android:background="#00000000"
         android:text="服务条款"
-        android:textColor="#2DBE5F"
+        android:textColor="#5CACEE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

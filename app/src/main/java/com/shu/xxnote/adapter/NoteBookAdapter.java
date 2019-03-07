@@ -213,38 +213,6 @@ public class NoteBookAdapter extends BaseAdapter {
                         });
                     }
                 });
-                //添加笔记
-                add_notes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        final Dialog dialog3 = new Dialog(context, R.style.HorizonDialog);
-                        dialog3.setContentView(R.layout.add_note);
-                        dialog3.show();
-                        dialog.cancel();
-                        Button photo = (Button) dialog3.findViewById(R.id.photo);
-                        Button word = (Button) dialog3.findViewById(R.id.word);
-                        Button video = (Button) dialog3.findViewById(R.id.video);
-
-                        photo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-
-                            }
-                        });
-                        word.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-
-                            }
-                        });
-                        video.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View arg0) {
-
-                            }
-                        });
-                    }
-                });
                 return true;
             }
         });

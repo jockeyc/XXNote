@@ -27,15 +27,7 @@
         android:textSize="18sp"
         android:text="重命名"/>
 
-    <Button
-        android:id="@+id/add_notes"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="1dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:text="添加笔记"
-        android:textSize="18sp" />
+
 
 
 </LinearLayout>
