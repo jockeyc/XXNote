@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                                 finish();
                             }else {
                                 Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+                                Bundle bundle = new Bundle();
                                 intent.putExtra("username",phoneMail);
                                 startActivity(intent);
                                 finish();
